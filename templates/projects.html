@@ -8,11 +8,11 @@
 <h2 style="color:blue"> New Project: </h2>
 <br>
 <form action="/projects" method="post">
-    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="name" name="name" placeholder="Project Name" type="text">
+    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="name" name="name" placeholder="Project Name" type="text" pattern="[a-zA-Z0-9\s]+" minlength="1" maxlength="10" title="Must contain 1-45 letters or numbers" required>
     <br>
-    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="description" name="description" placeholder="Project Description" type="text" width="200px">
+    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="description" name="description" placeholder="Project Description" type="text" width="200px" required>
     <br>
-    Taret Date: <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="date" name="date" placeholder="Target Date" type="date">
+    Taret Date: <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="date" name="date" placeholder="Target Date" type="date" pattern="^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$" title="Must have yyyy-mm-dd format" required>
     <br>
     <br>
     <button class="btn btn-primary" type="submit"> Create </button>

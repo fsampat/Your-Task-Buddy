@@ -10,11 +10,11 @@
     <form action="/register2" method="post">
         {% for x in range(teamsize) %}
         <p style="color:blue"> <b> <u> Team Member {{ x + 1 }}: </u> </b> </p>
-        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="fname{{x}}" name="fname{{x}}" placeholder="First Name" type="text">
-        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="lname{{x}}" name="lname{{x}}" placeholder="Last Name" type="text">
-        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username{{x}}" name="username{{x}}" placeholder="Username" type="text">
-        <input class="form-control mx-auto w-auto" id="password{{x}}" name="password{{x}}" placeholder="Password" type="password">
-        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="email{{x}}" name="email{{x}}" placeholder="E-mail Address" type="email">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="fname{{x}}" name="fname{{x}}" placeholder="First Name" type="text" required maxlength="45" pattern="[a-zA-Z0-9]+" minlength="1" maxlength="10" title="Must contain 1-45 letters or numbers" required>
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="lname{{x}}" name="lname{{x}}" placeholder="Last Name" type="text" required maxlength="45" pattern="[a-zA-Z0-9]+" minlength="1" maxlength="10" title="Must contain 1-45 letters or numbers" required>
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username{{x}}" name="username{{x}}" placeholder="Username" type="text" pattern="[a-zA-Z0-9]+" minlength="4" maxlength="10" title="Must contain 4-10 letters or numbers" required>
+        <input class="form-control mx-auto w-auto" id="password{{x}}" name="password{{x}}" placeholder="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="email{{x}}" name="email{{x}}" placeholder="E-mail Address" type="email" required maxlength="45" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
         <br>
         {% endfor %}
         <input type="hidden" id="teamsize" name="teamsize" value="{{teamsize}}" />

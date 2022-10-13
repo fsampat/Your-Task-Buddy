@@ -33,10 +33,10 @@
     </select>
     <br> <br>
     Category:
-    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="category" name="category" placeholder="Category" type="text" value="{{ category }}">
+    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="category" name="category" placeholder="Category" type="text" value="{{ category }}" pattern="[a-zA-Z0-9\s]+" minlength="1" maxlength="15" title="Must contain 1-15 letters or numbers or spaces" required>
     <br>
     Description:
-    <textarea rows="4" autocomplete="off" autofocus class="form-control mx-auto w-auto" id="description" name="description" placeholder="Task Description" type="text" value="{{ description }}"> {{ description }} </textarea>
+    <textarea rows="4" autocomplete="off" autofocus class="form-control mx-auto w-auto" id="description" name="description" placeholder="Task Description" type="text" value="{{ description }}" required> {{ description }} </textarea>
     <br>
     Current Status:
     <br>
@@ -48,7 +48,7 @@
       <option value="Complete" {% if status == "Complete" %} selected {% endif %} >Complete</option>
     </select>
     <br> <br>
-    Target Date: <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="date" name="date" placeholder="Target Date" type="date" value = "{{ date }}">
+    Target Date: <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="date" name="date" placeholder="Target Date" type="date" value = "{{ date }}" type="date" pattern="^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$" title="Must have yyyy-mm-dd format" required>
     <br>
     <br>
     <button class="btn btn-primary" type="submit" id = "update" name ="update" value ="update"> Update </button> <button class="btn btn-primary" type="submit" id="update" name = "update" value ="delete" style="background-color:red"> Delete </button>
