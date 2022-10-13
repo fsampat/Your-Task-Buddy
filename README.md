@@ -21,7 +21,17 @@ Future enhancements for this web application include: independent team member re
 
 ## Screenshots
 
-![Bitmap](docs/images/faces.png)
+Login Page:
+![Your-Task-Buddy](Login.png)
+
+Projects:
+![Your-Task-Buddy](Projects.png)
+
+Tasks:
+![Your-Task-Buddy](Tasks.png)
+
+Modify a task:
+![Your-Task-Buddy](ModifyTask.png)
 
 
 ## Deployment
@@ -29,6 +39,6 @@ Future enhancements for this web application include: independent team member re
 To deploy this tool run
 
 ```bash
-  python bitmapfilter.py 
+  run flask 
 ```
 
