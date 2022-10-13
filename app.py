@@ -206,6 +206,13 @@ def projects():
         name = request.form.get("name")
         description = request.form.get("description")
         date = request.form.get("date")
+        
+        # check the username has not already been taken
+        check_project_name = db.execute("SELECT name FROM projects where name = ?", (name,)).fetchone()
+        if check_project_name:
+                con.close()
+                return apology("Project name " + check_project_name["name"] + " taken.  Please try again", 403)        
+        
         db.execute("INSERT INTO projects (name, description, target_date, group_id) VALUES (?,?,?,?)", (name, description, date, group_id,))
         
         # Commit changes and close database connection
@@ -228,15 +235,28 @@ def logout():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    
+
     # Register team.  Step 1 of 2 step process.  Collect user info.
     if request.method == "GET":
         return render_template("register.html")
 
     # Upon form submission, get team name and # of members of users.  Move user to step 2.
     elif request.method == "POST":
+        
+        # Create a Connection object with SQLITE3 database
+        con = SQL(r"taskbuddy.db")
+        db = con.cursor()
+        
         teamsize = int(request.form.get("size"))
         teamname = request.form.get("team")
+
+        # check the team name has not already been taken
+        check_teamname = db.execute("SELECT * FROM groups where name = ?", (teamname,)).fetchone()
+        if check_teamname:
+                con.close()
+                return apology("Team name " + check_teamname["name"] + " taken.  Please try again", 403)
+
+        con.close()
         return render_template("register2.html", teamsize=teamsize, teamname=teamname)
 
     return apology("Invalid Entry")
@@ -262,6 +282,13 @@ def register2():
             email = request.form.get("email"+str(x))
             username = request.form.get("username"+str(x))
             password = generate_password_hash(request.form.get("password"+str(x)))
+
+            # check the username has not already been taken
+            check_username = db.execute("SELECT username FROM users where username = ?", (username,)).fetchone()
+            if check_username:
+                    con.close()
+                    return apology("Username " + username + " taken.  Please try again", 403)
+
             db.execute("INSERT INTO users (fname, lname, email, username, hash, group_id) VALUES (?,?,?,?,?,?)", (fname, lname, email, username, password, teamid,))
 
     # Commit changes and close database connection
