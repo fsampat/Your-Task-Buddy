@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Tasks
+{% endblock %}
+
+{% block main %}
+    <H1 style="color:blue"> <b> My Tasks </b> </H1>
+    <p> <a href="/newtask"> Click here </a> to create a new task. </p>
+    <br> <br>
+    <table class="table">
+        <thead class="thead-dark" style="color:blue">
+          <tr>
+            <th scope="col"> Project Name </th>
+            <th scope="col"> Category </th>
+            <th scope="col"> Task Description </th>
+            <th scope="col"> Status </th>
+            <th scope="col"> Assigned By </th>
+            <th scope="col"> Start Date </th>
+            <th scope="col"> Target Completion </th>
+            <th scope="col">  </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for task in tasks %}
+                <tr>
+                    <td> {{ task["project_name"] }} </td>
+                    <td> {{ task["category"] }} </td>
+                    <td> {{ task["description"] }} </td>
+                    <td> {{ task["status"] }} </td>
+                    <td> {{ task["assignedby"] }} </td>
+                    <td> {{ task["date_created"] }} </td>
+                    <td> {{ task["date_due"] }} </td>
+                    <form action="/modifytask" method="post">
+                      <td>
+                        <button class="btn btn-primary" type="modify" id="update" name="update" value = "modify"> Modify </button>
+                        <input type="hidden" id="task" name="task" value="{{ task }}" />
+                      </td>
+                    </form>
+                </tr>
+            {% endfor %}
+          </tr>
+        </tbody>
+      </table>
+{% endblock %}

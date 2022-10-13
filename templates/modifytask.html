@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Modify Task
+{% endblock %}
+
+{% block main %}
+<h2 style="color:blue"> <b> Modify Existing Task: </b> </h2>
+<br>
+<form action="/modifytask" method="post" style="color:blue">
+    Project Name:
+    <br>
+    <select id="project" name="project" size = "1">
+        {% for project in projects %}
+            {% if project["name"] == pname %}
+                <option selected> {{ project["name"] }} </option>
+            {% else %}
+                <option> {{ project["name"] }} </option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    <br> <br>
+    Assign Task To:
+    <br>
+    <select id="assignto" name="assignto" size = "1">
+        {% for user in users %}
+            {% if user["fullname"] == assignedto %}
+                <option selected> {{ user["fullname"] }} </option>
+            {% else %}
+                <option> {{ user["fullname"] }} </option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    <br> <br>
+    Category:
+    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="category" name="category" placeholder="Category" type="text" value="{{ category }}">
+    <br>
+    Description:
+    <textarea rows="4" autocomplete="off" autofocus class="form-control mx-auto w-auto" id="description" name="description" placeholder="Task Description" type="text" value="{{ description }}"> {{ description }} </textarea>
+    <br>
+    Current Status:
+    <br>
+    <select id="status" name="status" size = "5">
+      <option value="Urgent" {% if status == "Urgent" %} selected {% endif %} >Urgent</option>
+      <option value="High" {% if status == "High" %} selected {% endif %} >High</option>
+      <option value="Med" {% if status == "Med" %} selected {% endif %} >Med</option>
+      <option value="Low" {% if status == "Low" %} selected {% endif %} >Low</option>
+      <option value="Complete" {% if status == "Complete" %} selected {% endif %} >Complete</option>
+    </select>
+    <br> <br>
+    Target Date: <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="date" name="date" placeholder="Target Date" type="date" value = "{{ date }}">
+    <br>
+    <br>
+    <button class="btn btn-primary" type="submit" id = "update" name ="update" value ="update"> Update </button> <button class="btn btn-primary" type="submit" id="update" name = "update" value ="delete" style="background-color:red"> Delete </button>
+    <input type="hidden" id="task" name="task" value="{{ task }}" />
+</form>
+{% endblock %}

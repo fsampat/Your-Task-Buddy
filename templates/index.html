@@ -1,1 +1,47 @@
+{% extends "layout.html" %}
 
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+<p align ="left" style="color:blue"> <i > Signed in as {{ fullname }}. </i> </p>
+    <H1 style="color:blue"> <b> My Projects </b> </H1>
+    <p> <a href="\projects"> Click here </a> to create a new project. </p>
+    <br> <br>
+    <table class="table">
+        <thead class="thead-dark" style="color:blue">
+          <tr>
+            <th scope="col" rowspan="2">Project Name</th>
+            <th scope="col" rowspan="2">Description</th>
+            <th scope="col" colspan="4" style="color:blue"> <i> Team's Outstanding Tasks </i> </th>
+            <th scope="col" rowspan="2"> Tasks Completed </th>
+            <th scope="col" rowspan="2">Start Date</th>
+            <th scope="col" rowspan="2">Target Completion</th>
+          </tr>
+          <tr>
+            <th scope="col"># of Urgent</th>
+            <th scope="col"># of High</th>
+            <th scope="col"># of Med</th>
+            <th scope="col"># of Low</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for project in projects %}
+                <tr>
+                    <td> {{ project["name"] }} </td>
+                    <td> {{ project["description"] }} </td>
+                    <td> {{ project["urgent"] }} </td>
+                    <td> {{ project["high"] }} </td>
+                    <td> {{ project["med"] }} </td>
+                    <td> {{ project["low"] }} </td>
+                    <td> {{ project["completed"] }} </td>
+                    <td> {{ project["start_date"] }} </td>
+                    <td> {{ project["target_date"] }} </td>
+                </tr>
+            {% endfor %}
+          </tr>
+        </tbody>
+      </table>
+{% endblock %}

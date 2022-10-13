@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reigster
+{% endblock %}
+
+{% block main %}
+    <h2 style="color:blue"> Step 1: Team Information </h2>
+    <br>
+    <form action="/register" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="team" name="team" placeholder="Team Name" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="size" name="size" placeholder="# of Members" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit"> Next... </button>
+    </form>
+{% endblock %}

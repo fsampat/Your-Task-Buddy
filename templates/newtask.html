@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    New Task
+{% endblock %}
+
+{% block main %}
+<h2 style="color:blue"> <b> New Task: </b> </h2>
+<br>
+<form action="/tasks" method="post" style="color:blue">
+
+    Project Name:
+    <br>
+    <select id="project" name="project" size = "1">
+        {% for project in projects %}
+        <option> {{ project["name"] }} </option>
+        {% endfor %}
+    </select>
+    <br> <br>
+    Assign Task To:
+    <br>
+    <select id="assignto" name="assignto" size = "1">
+        {% for user in users %}
+        <option> {{ user["fullname"] }} </option>
+        {% endfor %}
+    </select>
+    <br> <br>
+    Category:
+    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="category" name="category" placeholder="" type="text">
+    <br>
+    Description:
+    <textarea rows="4" autocomplete="off" autofocus class="form-control mx-auto w-auto" id="description" name="description" placeholder="Task Description" type="text"> </textarea>
+    <br>
+    Current Status:
+    <br>
+    <select id="status" name="status" size = "5">
+      <option value="Urgent">Urgent</option>
+      <option value="High">High</option>
+      <option value="Med">Med</option>
+      <option value="Low">Low</option>
+      <option value="Complete">Complete</option>
+    </select>
+    <br> <br>
+    Taret Date: <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="date" name="date" placeholder="Target Date" type="date">
+    <br>
+    <br>
+    <button class="btn btn-primary" type="submit"> Create </button>
+</form>
+{% endblock %}

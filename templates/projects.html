@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    New Project
+{% endblock %}
+
+{% block main %}
+<h2 style="color:blue"> New Project: </h2>
+<br>
+<form action="/projects" method="post">
+    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="name" name="name" placeholder="Project Name" type="text">
+    <br>
+    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="description" name="description" placeholder="Project Description" type="text" width="200px">
+    <br>
+    Taret Date: <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="date" name="date" placeholder="Target Date" type="date">
+    <br>
+    <br>
+    <button class="btn btn-primary" type="submit"> Create </button>
+</form>
+{% endblock %}

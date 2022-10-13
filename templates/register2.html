@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reigster
+{% endblock %}
+
+{% block main %}
+    <h2 style="color:blue"> Step 2: Member Information </h2>
+    <br>
+    <form action="/register2" method="post">
+        {% for x in range(teamsize) %}
+        <p style="color:blue"> <b> <u> Team Member {{ x + 1 }}: </u> </b> </p>
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="fname{{x}}" name="fname{{x}}" placeholder="First Name" type="text">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="lname{{x}}" name="lname{{x}}" placeholder="Last Name" type="text">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username{{x}}" name="username{{x}}" placeholder="Username" type="text">
+        <input class="form-control mx-auto w-auto" id="password{{x}}" name="password{{x}}" placeholder="Password" type="password">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="email{{x}}" name="email{{x}}" placeholder="E-mail Address" type="email">
+        <br>
+        {% endfor %}
+        <input type="hidden" id="teamsize" name="teamsize" value="{{teamsize}}" />
+        <input type="hidden" id="teamname" name="teamname" value="{{teamname}}" />
+        <button class="btn btn-primary" type="submit"> Finish </button>
+    </form>
+{% endblock %}
