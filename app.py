@@ -1,7 +1,6 @@
 import os
 import json
 
-#from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from tempfile import mkdtemp
@@ -208,7 +207,7 @@ def projects():
         date = request.form.get("date")
         
         # check the username has not already been taken
-        check_project_name = db.execute("SELECT name FROM projects where name = ?", (name,)).fetchone()
+        check_project_name = db.execute("SELECT name FROM projects where name = ? and group_id = ?", (name, group_id)).fetchone()
         if check_project_name:
                 con.close()
                 return apology("Project name " + check_project_name["name"] + " taken.  Please try again", 403)        
